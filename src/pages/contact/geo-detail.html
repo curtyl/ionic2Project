@@ -1,0 +1,10 @@
+<div *ngIf="geo">
+  <h2>{{geo.user.name}} Details !</h2>
+  <div><label>id: </label>{{geo.id}}</div>
+  <div>
+    <img src={{geo.user.picture_url}}> <br>
+    <label>user id: </label> {{geo.user.id}} <br>
+    <label>user lat: </label>{{geo.lat}} <br>
+    <label>user lng: </label>{{geo.lng}}
+  </div>
+</div>

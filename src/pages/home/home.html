@@ -1,17 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Ionic Project</ion-title>
+    <ion-title>Last coordonate</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>List Geographic</h2>
-  <ul class="Geo">
-    <li *ngFor="let geo of geos"
-    [class.selected]="geo === selectedGeo"
-    (click)="onSelect(geo)">
-      <span class="badge">{{geo.id}}</span> {{geo.lat}} {{geo.lng}}
+  <h2>List User</h2>
+  <ul>
+    <li *ngFor="let checkin of checkins"
+    [class.selected]="checkin === selectedCheckin"
+    (click)="onSelect(checkin)">
+      <span class="badge">{{checkin.user.picture_url}}</span> {{checkin.user.name}} {{checkin.lat}} {{checkin.lng}}
     </li>
   </ul>
-  <my-geo-detail [geo]="selectedGeo"></my-geo-detail>
+  <my-checkin-detail [checkin]="selectedCheckin"></my-checkin-detail>
 </ion-content>

@@ -1,5 +1,3 @@
-import { User } from './user';
-
 export class Geo{
   id: number;
   lat: number;

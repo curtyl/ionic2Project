@@ -1,15 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { Geo } from './geo';
+import { GeoService } from './geo.service';
 
 @Component({
   selector: 'page-contact',
-  templateUrl: 'contact.html'
+  templateUrl: 'contact.html',
+  providers: [GeoService]
 })
-export class ContactPage {
+export class ContactPage implements OnInit {
 
-  constructor(public navCtrl: NavController) {
+  geos: Geo[];
+  selectedGeo: Geo;
 
+  constructor(private GeoService: GeoService) { }
+  getGeo(): void {
+    this.GeoService.getGeo().then(geos => this.geos = geos);
   }
+  ngOnInit(): void {
+    this.getGeo();
+  }
+  onSelect(geo: Geo): void {
+    this.selectedGeo = geo;
+    }
 
 }

@@ -1,29 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 
-import { Geo } from './geo';
-import { GeoService } from './geo.service';
+import { UserService} from '../UserService/UserService'
+import { Checkin} from '../checkin/checkin'
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [GeoService]
+  providers: [Checkin]
 })
-export class HomePage implements OnInit {
 
-  geos: Geo[];
-  selectedGeo: Geo;
+export class HomePage {
 
-  constructor(private GeoService: GeoService) { }
-  getGeo(): void {
-    this.GeoService.getGeo().then(geos => this.geos = geos);
-  }
-  ngOnInit(): void {
-    this.getGeo();
-  }
-  onSelect(geo: Geo): void {
-    this.selectedGeo = geo;
+  checkins: Checkin[];
+  checkinSelected : Checkin;
+
+  constructor(public navCtrl: NavController, private userService: UserService, public platform: Platform){
+      this.userService.getAllCheckin().subscribe(  
+        data => {
+          this.checkins = data;
+        },
+        err => {
+          console.log(err);
+        },
+        () => console.log("checkin complete"));
+      }
+
+
+  onSelect(checkin: Checkin): void {
+    this.checkinSelected = checkin;
     }
 
 }
