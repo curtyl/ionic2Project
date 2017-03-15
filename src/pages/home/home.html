@@ -6,12 +6,20 @@
 
 <ion-content padding>
   <h2>List User</h2>
-  <ul>
-    <li *ngFor="let checkin of checkins"
+  <ion-list>
+    <ion-card *ngFor="let checkin of checkins"
     [class.selected]="checkin === selectedCheckin"
     (click)="onSelect(checkin)">
-      <span class="badge">{{checkin.user.picture_url}}</span> {{checkin.user.name}} {{checkin.lat}} {{checkin.lng}}
-    </li>
-  </ul>
-  <my-checkin-detail [checkin]="selectedCheckin"></my-checkin-detail>
+
+      <img *ngIf="checkin.image_path != null" src={{checkin.image_path}}>
+      <img *ngIf="checkin.image_path == null" src="../assets/default-image.png">
+      <ion-item>
+      <ion-avatar item-left>
+        <img *ngIf="checkin.user.picture_url != null" [src]="checkin.user.picture_url">
+        <img *ngIf="checkin.user.picture_url == null" src="../assets/default-image.png">
+      </ion-avatar>{{checkin.user.name}} <br>lat : {{checkin.lat}} <br> lng : {{checkin.lng}}
+    </ion-item>
+    </ion-card>
+  </ion-list>
+  <!-- <my-checkin-detail [checkin]="selectedCheckin"></my-checkin-detail> -->
 </ion-content>

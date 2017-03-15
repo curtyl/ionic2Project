@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 
-import { NavController, Platform } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 
 import { UserService} from '../UserService/UserService'
 import { Checkin} from '../checkin/checkin'
@@ -17,8 +17,8 @@ export class HomePage {
   checkins: Checkin[];
   checkinSelected : Checkin;
 
-  constructor(public navCtrl: NavController, private userService: UserService, public platform: Platform){
-      this.userService.getAllCheckin().subscribe(  
+  constructor(public navCtrl: NavController, private userService: UserService){
+      this.userService.getAllCheckin().subscribe(
         data => {
           this.checkins = data;
         },

@@ -13,10 +13,12 @@ export class UserService {
   }
 
   constructor(private http:Http) {
+    this.getAllCheckin();
   }
 
   getAllCheckin() {
       var response = this.http.get(this.urlBase+'/checkin').map(res => res.json());
+      console.log(response);
       return response;
   }
 }
